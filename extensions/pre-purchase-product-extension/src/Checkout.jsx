@@ -118,6 +118,13 @@ function Extension() {
   const variantId = suggestedProduct.variants.nodes[0].id;
   const isInCart = lines.value.some((line) => line.merchandise.id === variantId);
 
+  useEffect(() => {
+    if (suggestedProduct && !isInCart && !processing) {
+      handleAddToCart(variantId);
+    }
+  }, [suggestedProduct]);
+
+
   return (
     <ProductOffer
       product={suggestedProduct}
